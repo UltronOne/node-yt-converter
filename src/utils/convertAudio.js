@@ -49,7 +49,7 @@ ffmMT.setFfmpegPath(ffmpeg);
 */
 const convertAudio = async (options, onData, onClose) => {
     try {
-        const { url, itag, directoryDownload } = options
+        const { url, itag, directoryDownload, title } = options
         const info = await getInfo(url)
         const id = Date.now();
         const tracker = {
@@ -57,7 +57,7 @@ const convertAudio = async (options, onData, onClose) => {
             downloaded: null
         }
         const format = info.formats.find((fm) => fm.itag === itag)
-        const title = parserTitles(options?.title) || parserTitles(info.title)
+        //const title = parserTitles(options?.title) || parserTitles(info.title)
         const stream = ytdl(url, {
             filter: "audioonly",
             quality: format.itag
